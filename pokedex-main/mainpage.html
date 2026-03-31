@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokedex - Bruna Padilha</title>
+    <link rel="stylesheet" href="style-mainpag.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="background-container">
+        <div class="bg-image-local"></div>
+    </div>
+
+    <div class="main-wrapper">
+        <header class="main-header">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/9/98/International_Pok%C3%A9mon_logo.svg" alt="Pokémon Logo" class="logo">
+            <nav class="nav-links">
+                <a href="#" class="nav-btn active">Pokedex</a>
+                <a href="#" class="nav-btn">Início</a>
+                <a href="#" class="nav-btn">Favoritos</a>
+                <div class="profile-icon">👤</div>
+            </nav>
+        </header>
+
+        <div class="search-sort-bar">
+            <div class="search-container">
+                <span>🔍</span>
+                <input type="text" id="searchInput" placeholder="Buscar por nome ou número...">
+            </div>
+            <div class="sort-container">
+                <span>⇅</span>
+                <span class="sort-text">Ordenar por: Número</span>
+                <span>▼</span>
+            </div>
+        </div>
+
+        <main class="pokemon-grid" id="pokemonGrid"></main>
+    </div>
+
+    <script>
+        const pokemonData = [
+            { id: 1, name: "Bulbasaur", type: "grass", hp: 45, attack: 49, defense: 49, image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png" },
+            { id: 2, name: "Ivysaur", type: "grass", hp: 60, attack: 62, defense: 63, image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/2.png" },
+            { id: 3, name: "Venusaur", type: "grass", hp: 80, attack: 82, defense: 83, image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/3.png" },
+            { id: 4, name: "Charmander", type: "fire", hp: 39, attack: 52, defense: 43, image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/4.png" },
+            { id: 5, name: "Charmeleon", type: "fire", hp: 58, attack: 64, defense: 58, image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/5.png" },
+            { id: 6, name: "Charizard", type: "fire", hp: 78, attack: 84, defense: 78, image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/6.png" },
+            { id: 7, name: "Squirtle", type: "water", hp: 44, attack: 48, defense: 65, image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/7.png" },
+            { id: 8, name: "Wartortle", type: "water", hp: 59, attack: 63, defense: 80, image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/8.png" },
+            { id: 9, name: "Blastoise", type: "water", hp: 79, attack: 83, defense: 100, image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/9.png" },
+            { id: 10, name: "Caterpie", type: "bug", hp: 45, attack: 30, defense: 35, image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10.png" }
+        ];
+
+        const grid = document.getElementById('pokemonGrid');
+
+        function renderCards() {
+            grid.innerHTML = pokemonData.map(pokemon => `
+                <div class="pokemon-card-container ${pokemon.type}">
+                    <div class="pokemon-card-base">
+                        <div class="favorite-toggle" onclick="toggleFavorite(this)">
+                            <div class="pokeball-icons-wrapper">
+                                <svg class="icon-outline" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10" stroke="white" stroke-width="2" fill="transparent"/><path d="M2 12h20" stroke="white" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="12" r="3" stroke="white" stroke-width="2" fill="transparent"/></svg>
+                                <svg class="icon-filled" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12h20C22 6.48 17.52 2 12 2z" fill="#EE1515"/><path d="M12 22c5.52 0 10-4.48 10-10H2c0 5.52 4.48 10 10 10z" fill="white"/><rect x="2" y="10.5" width="20" height="3" fill="#222222"/><circle cx="12" cy="12" r="10" stroke="#222222" stroke-width="1.5" fill="transparent"/><circle cx="12" cy="12" r="4" fill="white" stroke="#222222" stroke-width="1.5"/><circle cx="12" cy="12" r="2.5" fill="white" stroke="#222222" stroke-width="1"/></svg>
+                            </div>
+                        </div>
+                        <img src="${pokemon.image}" class="pokemon-image">
+                        <div class="glass-info-panel">
+                            <div class="header-row">
+                                <h3 class="pokemon-name">${pokemon.name}</h3>
+                                <span class="pokemon-number">#${pokemon.id.toString().padStart(3, '0')}</span>
+                            </div>
+                            <div class="type-badge">${pokemon.type}</div>
+                        </div>
+                    </div>
+                    <button class="expand-btn" onclick="toggleDetails(this)">▼</button>
+                    <div class="details-panel">
+                        <div class="stat-row"><span>Ataque</span><span class="stat-val">${pokemon.attack}xp</span></div>
+                        <div class="stat-row"><span>Defesa</span><span class="stat-val">${pokemon.defense}xp</span></div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function toggleDetails(btn) {
+            const panel = btn.nextElementSibling;
+            panel.classList.toggle('open');
+            btn.textContent = panel.classList.contains('open') ? '▲' : '▼';
+        }
+
+        function toggleFavorite(el) {
+            el.classList.toggle('is-favorite');
+        }
+
+        renderCards();
+    </script>
+</body>
+</html>
