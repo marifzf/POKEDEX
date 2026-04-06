@@ -16,11 +16,13 @@
     border: 1px solid rgba(255, 255, 255, 0.3);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     min-width: 220px;
-    border-radius: 15px;
-    margin-top: 20px;
+    border-radius: 15px;    
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: center;    
+    transform: translatey(8%);
+    transition: transform 0.5s ease;
+    
 }
 
 .card-add-head{
@@ -48,7 +50,7 @@
     width: 85%;
     z-index: 10;
     filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.526));
-    transition: transform 0.3s ease;
+    transition: transform 0.5s ease;
 }
 
 .card-add-head-title{
@@ -103,14 +105,15 @@
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     min-width: 220px;
     border-radius: 15px;
-    margin-top: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
+    transform: translatey(8%);
+    transition: transform 0.5s ease;
 }
 
 .card-add-empty-circle{
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(129, 129, 129, 0.1);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.3);
