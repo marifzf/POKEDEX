@@ -1,3 +1,9 @@
+nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .card-add-content{
     margin-top: 30px;
     display: flex;
@@ -7,6 +13,8 @@
     justify-content: center;
     justify-self:center;
     gap: 8%;
+    padding: 2%;
+    animation: slideUp 0.3s ease forwards;
 }
 
 .card-add{
@@ -16,12 +24,17 @@
     border: 1px solid rgba(255, 255, 255, 0.3);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     min-width: 220px;
-    border-radius: 15px;    
+    border-radius: 15px; 
     display: flex;
     flex-direction: column;
-    align-items: center;    
-    transform: translatey(8%);
-    transition: transform 0.5s ease;
+    align-items: center;
+
+    transition: transform 0.3s ease;
+    
+}
+
+.card-add:hover{
+    transform: scale(1.05);
     
 }
 
@@ -45,12 +58,22 @@
     position: absolute;
     bottom: 20px;
     flex: 0 0 calc(33.333% - 7px); 
-    left:50%;
-    transform: translateX(-50%);    
+    left: 5%;   
     width: 85%;
     z-index: 10;
     filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.526));
-    transition: transform 0.5s ease;
+    animation: slideUp 0.6s ease forwards;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translate(0%, -30%);
+        opacity: 0;
+    }
+    to {
+        transform: translate(0%, 0%);
+        opacity: 1;
+    }
 }
 
 .card-add-head-title{
@@ -95,8 +118,8 @@
     margin-bottom: 20px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     font-size: large;
+    animation: slideUp 0.8s ease forwards;
 }
-
 .card-add-empty{
     background: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(10px);
@@ -108,8 +131,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    transform: translatey(8%);
-    transition: transform 0.5s ease;
+
+    transition: transform 0.3s ease;
+    
+}
+
+.card-add-empty:hover{
+    transform: scale(1.05);
 }
 
 .card-add-empty-circle{
