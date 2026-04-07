@@ -18,23 +18,10 @@ nav {
 }
 
 .card-add{
-    background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    min-width: 220px;
-    border-radius: 15px; 
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
-
-    transition: transform 0.3s ease;
-    
-}
-
-.card-add:hover{
-    transform: scale(1.05);
     
 }
 
@@ -42,8 +29,7 @@ nav {
     position: relative;
     display: flex;
     flex-direction: column;
-    min-width: 200px;
-    height: 170px;
+    height: 40%;
     width: 100%;
     border-radius: 15px;
     background: rgba(255, 255, 255, 0.1);
@@ -102,26 +88,29 @@ nav {
 }
 
 .card-add-info-content{
-    padding: 10px 20px;
+    width: 90%;
+    height: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-self: center;
 }
 
 .card-add-info{
     display: flex;
     justify-content: center;
-    margin-top: 5%;
-    padding: 8px 20px;
+    padding: 8px 10px;
     background: linear-gradient(90deg, #5dd9ff, #5381ff);
     border: 1px solid rgba(255, 255, 255, 0.3);
-    width: 80%;
-    min-width: 150px;
     border-radius: 20px;
-    margin-bottom: 20px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     font-size: large;
     animation: slideUp 0.8s ease forwards;
 }
+
 .card-add-empty{
     background: rgba(255, 255, 255, 0.2);
+    height: 420px;
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.3);
@@ -132,12 +121,15 @@ nav {
     align-items: center;
     justify-content: center;
 
-    transition: transform 0.3s ease;
-    
+    transition: transform 0.3s ease;    
 }
 
 .card-add-empty:hover{
     transform: scale(1.05);
+}
+
+.card-add-empty:active{
+    transform: scale(1.0);
 }
 
 .card-add-empty-circle{
