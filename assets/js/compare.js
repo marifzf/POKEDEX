@@ -72,3 +72,13 @@ function addCard3(){
         </div>
     `;
 }
+
+function irParaSecao() {
+        
+
+        var section = document.getElementById('sectionCompare');
+        section.style.visibility = 'visible';
+
+    document.getElementById('sectionCompare').scrollIntoView({ behavior: 'smooth' });
+    section.style.animation = 'slideUp 0.3s ease forwards';
+}
